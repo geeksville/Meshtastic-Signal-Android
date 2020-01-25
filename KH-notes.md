@@ -1,14 +1,11 @@
-
-
-
 # Signal investigation!
 
-The existing code is super clean and nice.
+Note: the android app for talking to the mesh radio is very much a WIP in progress.  But if you are curious [here it is](https://github.com/geeksville/Meshtastic-Android).  The embedded code in the radio is also a WIP and I'll be posting it to github soon.
+
+The existing Signal code is super clean and nice.
 
 * an encrypted message to one person is 898 bytes for a four letter message (with the json encoding and base64 overhead)
-* sample (from SignalServiceMessagePipe.send requestMessage.body:
-
-{"destination":"+1650xxxyyyy","messages":[{"content":"EQohBbfWSMUfxuSj0Wj7eaod0LBKulQ4CGM7ZrpvqYr+2oNkEitt8DDDRRgM4sJseMQQRfD3e2IKo+rHxyy18ZLvMnjepZQwRVqRywgGNui3GtEDOLEtUtbT6uq67hJS/KafZTYmc2e/G/FgLE2bhnsXUfyIkzubRRyKrivBGQ4JEInWZJb4U4Qbgd/3TZgWBnB7mPcLTC7EE0s+T/nZtMtHn4Y/fgroISnnhxcxE3eqnToHJ5ZFMZr66fPmpMdujMWrwX0z+M4bJ2hunlG5C1zkVcuArvxD+aUf1DZOZBp5NV0sceCmZqomm6awTuxiXxjAs6kYeXu0r6fOx8pinlzRXUxe9J/Z9ZNmwUt388atrUMW56SSSGnalcTUKgDCKu5bcje4WYU03Ni5j9vVsQiN0TbK1msOirtCx7f4DbMkD0b7yYUwVqPxTrqFq1VDOfsmf02VDNy4rBauQCH5rSqKG7BIpAaWA3SXkfIPwjrHiQeMGCXMrcrEcbqj/1GVAbLIjsoKwiQXiI1i1bV0TGnPtMIOls1e6BtJnppm4H/kqX8SwffajPWQEqQ6vRk4R6hsSFQ+04BYg6MfYxIPVD4+9u7SL9YYEHU3e1/yVE4Rn/kRbZqoPuy8s1lWm0X7pZjYZN02cIDG69D51I6hWL6dKtVZ2UVATVwsRWSrs4CrgP5BmIymPgFYCsJLckIcBDQLEXEkXFnaH+6FYoprIWCUlsrr","destinationDeviceId":1,"destinationRegistrationId":14580,"type":6}],"online":false,"timestamp":1579889398714}
+* sample (from SignalServiceMessagePipe.send requestMessage.body: {"destination":"+1650xxxyyyy","messages":[{"content":"EQohBbfWS... shortened ... prIWCUlsrr","destinationDeviceId":1,"destinationRegistrationId":14580,"type":6}],"online":false,"timestamp":1579889398714}
 
 ## Send message flow
 
