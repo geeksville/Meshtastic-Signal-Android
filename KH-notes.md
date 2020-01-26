@@ -34,6 +34,8 @@ This would be the initial release of this modified version of Signal-Android.  (
 Send message path:
 * SignalServiceMessagePipe is getting created on L205 (for the 'regular' pipe) and L214 (for 'unidentified' pipes FIXME, what does this mean?) of SignalServiceMessageReceiver 
 change to create MeshOverlayMessagePipe
+* PROBLEM - oops - SignalServiceMessageReceiver is in the platform independent java lib.  So I can't easily call out there to make my (android using) overlay.  I guess I'll need to add a small transport
+abstraction now rather than later.
 * override for SignalServiceMessagePipe.send, the full request/payload can be seen at like 131 of that file
 
 Receive message path:
