@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.util.Log;
 
 import com.geeksville.mesh.IMeshService;
@@ -34,10 +35,8 @@ public class MeshClient {
 
     /// Send data to the mesh
     public void sendData(String destId, byte[] payload, int typ) throws android.os.RemoteException {
-        // convert error strings into exceptions
-        String e = service.sendData(destId, payload, typ);
-        if (e != null)
-            throw new RuntimeException(e); // FIXME, define our own exception type
+        if(service != null)
+            service.sendData(destId, payload, typ);
     }
 
     private ServiceConnection connection = new ServiceConnection() {
@@ -47,6 +46,11 @@ public class MeshClient {
 
             // FIXME - do actions for when we connect to the service
             Log.i("MeshClient", "did connect");
+            try {
+                service.subscribeReceiver(context.getPackageName(), "com.geeksville.signalmesh.MeshReceiver");
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
