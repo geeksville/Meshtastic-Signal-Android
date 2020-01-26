@@ -79,7 +79,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   public @NonNull SignalServiceMessageReceiver provideSignalServiceMessageReceiver() {
     SleepTimer sleepTimer = TextSecurePreferences.isFcmDisabled(context) ? new AlarmSleepTimer(context)
                                                                          : new UptimeSleepTimer();
-    return new MeshOverlayMessageReceiver(networkAccess.getConfiguration(context),
+    return new MeshOverlayMessageReceiver(context, networkAccess.getConfiguration(context),
                                             new DynamicCredentialsProvider(context),
                                             BuildConfig.USER_AGENT,
                                             new PipeConnectivityListener(),

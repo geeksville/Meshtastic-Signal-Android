@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
+import android.util.Log;
 
 import com.geeksville.mesh.IMeshService;
 
@@ -20,10 +21,10 @@ public class MeshClient {
 
     public void init(Context c) {
         this.context = c;
-        Intent i = new Intent(IMeshService.class.getName());
-        i.setPackage("com.geeksville.mesh");
-        if (context.bindService(i, connection, Context.BIND_AUTO_CREATE) != true)
-            throw new RuntimeException("FIXME, didn't bind to mesh service");
+        Intent i = new Intent();
+        i.setClassName("com.geeksville.mesh", "com.geeksville.mesh.MeshService");
+        if (!context.bindService(i, connection, Context.BIND_AUTO_CREATE))
+            Log.e("MeshClient", "FIXME, didn't bind to mesh service");
     }
 
     public void close() {
@@ -45,6 +46,7 @@ public class MeshClient {
             service = IMeshService.Stub.asInterface(iBinder);
 
             // FIXME - do actions for when we connect to the service
+            Log.i("MeshClient", "did connect");
         }
 
         @Override

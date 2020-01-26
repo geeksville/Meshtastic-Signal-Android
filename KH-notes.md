@@ -48,6 +48,7 @@ Receive message path:
 ## Extra work for real implementation
 There are a number of changes which would be needed to make this project more appealing and more cleanly (optionally) integrate with Signal
 
+* show an insecure icon if the user has opted to use the mesh with only the mesh level crypto turned on (instead of the blue secure signal icon)
 * Instead of my crufty MeshOverlayMessagePipe experiment, add the (thin/small) notion of a Transport and move the REST stuff from SignalServiceMessagePipe into 
 RESTTransport and put my mesh stuff in MeshTransport (this would nicely allow different choices for encryyption, encoding, framing and transport in one smallish abstraction)
 * make online/offline/find current users in mesh work correctly

@@ -1,5 +1,7 @@
 package com.geeksville.signalmesh;
 
+import android.content.Context;
+
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessagePipe;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
@@ -11,19 +13,24 @@ import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.websocket.WebSocketConnection;
 
 public class MeshOverlayMessageReceiver extends SignalServiceMessageReceiver {
+    private MeshClient mesh = new MeshClient();
+
     /**
      * Construct a SignalServiceMessageReceiver.
      *
      * @param urls The URL of the Signal Service.
      * @param credentials The Signal Service user's credentials.
      */
-    public MeshOverlayMessageReceiver(SignalServiceConfiguration urls,
-                                        CredentialsProvider credentials,
-                                        String userAgent,
-                                        ConnectivityListener listener,
-                                        SleepTimer timer)
+    public MeshOverlayMessageReceiver(Context context,
+                                      SignalServiceConfiguration urls,
+                                      CredentialsProvider credentials,
+                                      String userAgent,
+                                      ConnectivityListener listener,
+                                      SleepTimer timer)
     {
         super(urls, credentials, userAgent, listener, timer);
+
+        mesh.init(context); // FIXME, also call close later...
     }
 
     @Override
