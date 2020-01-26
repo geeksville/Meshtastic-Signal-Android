@@ -40,7 +40,7 @@ public class MeshOverlayMessageReceiver extends SignalServiceMessageReceiver {
                 Optional.of(credentialsProvider), userAgent, connectivityListener,
                 sleepTimer);
 
-        return new MeshOverlayMessagePipe(webSocket, Optional.of(credentialsProvider));
+        return new MeshOverlayMessagePipe(mesh, webSocket, Optional.of(credentialsProvider));
     }
 
     @Override
@@ -50,6 +50,6 @@ public class MeshOverlayMessageReceiver extends SignalServiceMessageReceiver {
                 Optional.<CredentialsProvider>absent(), userAgent, connectivityListener,
                 sleepTimer);
 
-        return new MeshOverlayMessagePipe(webSocket, Optional.of(credentialsProvider));
+        return new MeshOverlayMessagePipe(mesh, webSocket, Optional.of(credentialsProvider));
     }
 }

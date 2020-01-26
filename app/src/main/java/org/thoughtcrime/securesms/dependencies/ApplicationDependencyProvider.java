@@ -6,6 +6,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import com.geeksville.signalmesh.MeshOverlayMessageReceiver;
+import com.geeksville.signalmesh.MeshOverlayMessageSender;
 
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.BuildConfig;
@@ -63,16 +64,14 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull SignalServiceMessageSender provideSignalServiceMessageSender() {
-      throw new RuntimeException("geeksville experirment - I think this is currently unused?");
-      /*
-      return new SignalServiceMessageSender(networkAccess.getConfiguration(context),
+      return new MeshOverlayMessageSender(networkAccess.getConfiguration(context),
                                             new DynamicCredentialsProvider(context),
                                             new SignalProtocolStoreImpl(context),
                                             BuildConfig.USER_AGENT,
                                             TextSecurePreferences.isMultiDevice(context),
                                             Optional.fromNullable(IncomingMessageObserver.getPipe()),
                                             Optional.fromNullable(IncomingMessageObserver.getUnidentifiedPipe()),
-                                            Optional.of(new SecurityEventListener(context))); */
+                                            Optional.of(new SecurityEventListener(context)));
   }
 
   @Override

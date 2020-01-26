@@ -30,4 +30,13 @@ public class OutgoingPushMessage {
     this.destinationRegistrationId = destinationRegistrationId;
     this.content                   = content;
   }
+
+  // geeksville experiment needs access to this
+  public String getContent() {
+    return content;
+  }
+
+  public int getType() {
+    return type;
+  }
 }
