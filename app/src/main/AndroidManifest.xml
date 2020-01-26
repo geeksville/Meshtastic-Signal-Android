@@ -574,6 +574,13 @@
 
     <receiver android:name=".revealable.ViewOnceMessageManager$ViewOnceAlarm" />
 
+    <receiver android:name="com.geeksville.signalmesh.MeshReceiver" android:exported="true">
+        <intent-filter>
+            <action android:name="com.geeksville.mesh.RECEIVED_OPAQUE"/>
+            <action android:name="com.geeksville.mesh.NODE_CHANGE"/>
+        </intent-filter>
+    </receiver>
+
     <provider android:name=".providers.PartProvider"
               android:grantUriPermissions="true"
               android:exported="false"
