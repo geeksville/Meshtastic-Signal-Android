@@ -48,12 +48,12 @@ import java.util.UUID;
 @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 public class SignalServiceMessageReceiver {
 
-  private final PushServiceSocket          socket;
-  private final SignalServiceConfiguration urls;
-  private final CredentialsProvider        credentialsProvider;
-  private final String                     userAgent;
-  private final ConnectivityListener       connectivityListener;
-  private final SleepTimer                 sleepTimer;
+  protected final PushServiceSocket          socket;
+  protected final SignalServiceConfiguration urls;
+  protected final CredentialsProvider        credentialsProvider;
+  protected final String                     userAgent;
+  protected final ConnectivityListener       connectivityListener;
+  protected final SleepTimer                 sleepTimer;
 
   /**
    * Construct a SignalServiceMessageReceiver.

@@ -5,6 +5,8 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import com.geeksville.signalmesh.MeshOverlayMessageReceiver;
+
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.IncomingMessageProcessor;
@@ -61,6 +63,8 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull SignalServiceMessageSender provideSignalServiceMessageSender() {
+      throw new RuntimeException("geeksville experirment - I think this is currently unused?");
+      /*
       return new SignalServiceMessageSender(networkAccess.getConfiguration(context),
                                             new DynamicCredentialsProvider(context),
                                             new SignalProtocolStoreImpl(context),
@@ -68,14 +72,14 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                             TextSecurePreferences.isMultiDevice(context),
                                             Optional.fromNullable(IncomingMessageObserver.getPipe()),
                                             Optional.fromNullable(IncomingMessageObserver.getUnidentifiedPipe()),
-                                            Optional.of(new SecurityEventListener(context)));
+                                            Optional.of(new SecurityEventListener(context))); */
   }
 
   @Override
   public @NonNull SignalServiceMessageReceiver provideSignalServiceMessageReceiver() {
     SleepTimer sleepTimer = TextSecurePreferences.isFcmDisabled(context) ? new AlarmSleepTimer(context)
                                                                          : new UptimeSleepTimer();
-    return new SignalServiceMessageReceiver(networkAccess.getConfiguration(context),
+    return new MeshOverlayMessageReceiver(networkAccess.getConfiguration(context),
                                             new DynamicCredentialsProvider(context),
                                             BuildConfig.USER_AGENT,
                                             new PipeConnectivityListener(),
