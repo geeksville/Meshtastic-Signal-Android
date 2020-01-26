@@ -563,7 +563,9 @@ public class SignalServiceMessageSender {
 
     builder.setTimestamp(message.getTimestamp());
 
-    return container.setDataMessage(builder).build().toByteArray();
+    Content r = container.setDataMessage(builder).build();
+    Log.i("geeksville debug", "Content = " + r);
+    return r.toByteArray();
   }
 
   private byte[] createCallContent(SignalServiceCallMessage callMessage) {

@@ -4,11 +4,18 @@ Note: the android app for talking to the mesh radio is very much a WIP in progre
 
 The existing Signal code is super clean and nice.
 
-* an encrypted message to one person is 898 bytes for a four letter message (with the json encoding and base64 overhead)
-* sample (from SignalServiceMessagePipe.send requestMessage.body: {"destination":"+1650xxxyyyy","messages":[{"content":"EQohBbfWS... shortened ... prIWCUlsrr","destinationDeviceId":1,"destinationRegistrationId":14580,"type":6}],"online":false,"timestamp":1579889398714}
-
 ## Send message flow
 
+* if the user sends "hello" as text
+* before encrypting the message it is a "Content" protobuf about 46 bytes long: "data_message {
+  body: "hello"
+  profile_key: "\265\235\331\001a\027i\200$f\026\275\030\021\335\000\302\335\037\330\355A3m\237G\221$\300A\223\254"
+  timestamp: 1580078077480
+}"
+* an encrypted message to one person is 1464 bytes for a four letter message (with the json encoding and base64 overhead).  after removing base64 it is 549 bytes.
+* sample (from SignalServiceMessagePipe.send requestMessage.body: {"destination":"+1650xxxyyyy","messages":[{"content":"EQohBbfWS... shortened ... prIWCUlsrr","destinationDeviceId":1,"destinationRegistrationId":14580,"type":6}],"online":false,"timestamp":1579889398714}
+* first the text is encapsulated as a Content protobuf.
+* then it is encrypted in SignalServiceMessageSender.getEncryptedMessages
 * provide override for SignalServiceMessagePipe.send, the full request/payload can be seen at like 131 of that file
 * recipient.e164 contains the phone number
 * the full encrypted message text comes in list.messages[].content.  Sample content seems to be already base64 encoded:
@@ -48,6 +55,7 @@ Receive message path:
 ## Extra work for real implementation
 There are a number of changes which would be needed to make this project more appealing and more cleanly (optionally) integrate with Signal
 
+* Possibly destructure the Content protobuf for optimized text sending (and smaller) which can be understood by the radios? (no security though)
 * show an insecure icon if the user has opted to use the mesh with only the mesh level crypto turned on (instead of the blue secure signal icon)
 * Instead of my crufty MeshOverlayMessagePipe experiment, add the (thin/small) notion of a Transport and move the REST stuff from SignalServiceMessagePipe into 
 RESTTransport and put my mesh stuff in MeshTransport (this would nicely allow different choices for encryyption, encoding, framing and transport in one smallish abstraction)
