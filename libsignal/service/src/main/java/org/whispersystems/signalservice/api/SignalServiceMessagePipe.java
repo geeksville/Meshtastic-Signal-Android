@@ -48,7 +48,7 @@ public class SignalServiceMessagePipe {
   private final WebSocketConnection           websocket;
   private final Optional<CredentialsProvider> credentialsProvider;
 
-  SignalServiceMessagePipe(WebSocketConnection websocket, Optional<CredentialsProvider> credentialsProvider) {
+  public SignalServiceMessagePipe(WebSocketConnection websocket, Optional<CredentialsProvider> credentialsProvider) {
     this.websocket           = websocket;
     this.credentialsProvider = credentialsProvider;
 

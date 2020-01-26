@@ -32,7 +32,8 @@ If anyone is curious about the device side code I'm happy to provide github link
 This would be the initial release of this modified version of Signal-Android.  (I would list it on the play store for alpha users as Meshtastic-Signal? if I can get it working...)
 
 Send message path:
-* FIXME find where SignalServiceMessagePipe is getting created and change to create MeshOverlayMessagePipe
+* SignalServiceMessagePipe is getting created on L205 (for the 'regular' pipe) and L214 (for 'unidentified' pipes FIXME, what does this mean?) of SignalServiceMessageReceiver 
+change to create MeshOverlayMessagePipe
 * override for SignalServiceMessagePipe.send, the full request/payload can be seen at like 131 of that file
 
 Receive message path:
