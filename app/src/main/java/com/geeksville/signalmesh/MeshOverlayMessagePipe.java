@@ -41,7 +41,6 @@ public class MeshOverlayMessagePipe extends SignalServiceMessagePipe {
 
             int type = m.getType(); // FIXME, we also need to send this over the wir?
 
-            // FIXME base64 decode the string FIRST to save lots of bytes
             try {
                 mesh.sendData(dest, content, 0);
             } catch (RemoteException e) {

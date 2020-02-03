@@ -15,7 +15,7 @@ The existing Signal code is super clean and nice.
 * an encrypted message to one person is 1464 bytes for a four letter message (with the json encoding and base64 overhead).  after removing base64 it is 549 bytes.
 * sample (from SignalServiceMessagePipe.send requestMessage.body: {"destination":"+1650xxxyyyy","messages":[{"content":"EQohBbfWS... shortened ... prIWCUlsrr","destinationDeviceId":1,"destinationRegistrationId":14580,"type":6}],"online":false,"timestamp":1579889398714}
 * first the text is encapsulated as a Content protobuf.
-* then it is encrypted in SignalServiceMessageSender.getEncryptedMessages
+* then it is encrypted in SignalServiceMessageSender.getEncryptedMessage
 * provide override for SignalServiceMessagePipe.send, the full request/payload can be seen at like 131 of that file
 * recipient.e164 contains the phone number
 * the full encrypted message text comes in list.messages[].content.  Sample content seems to be already base64 encoded:
